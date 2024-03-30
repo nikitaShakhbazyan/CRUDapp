@@ -1,4 +1,3 @@
-// contactsRoutes.js
 const express = require('express');
 const router = express.Router();
 const { getContacts, getContact, createContact, deleteContact, updateContact } = require('../controller/contactsController');
