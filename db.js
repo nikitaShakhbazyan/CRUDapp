@@ -1,8 +1,11 @@
 const { Sequelize } = require('sequelize');
 const productsModel = require('./Products');
+const contactsModel = require('./Contacts')
+const dotenv = require('dotenv').config()
+const pass = process.env.DB_PASS
 
-const connection = async () => {
-    const sequelize = new Sequelize('finall_project', 'postgres', 'nickshakh', {
+const connectionProducts = async () => {
+    const sequelize = new Sequelize('finall_project', 'postgres', pass, {
         host: "localhost", 
         dialect: 'postgres'
     });
@@ -18,4 +21,25 @@ const connection = async () => {
     }
 }
 
-module.exports = connection;
+const connectionContacts = async () => {
+    const sequelize = new Sequelize('finall_project','postgres',pass,{
+        host: "localhost", 
+        dialect: 'postgres'
+    })
+    let Contacts = null;
+    try {
+        await sequelize.authenticate();
+        console.log('Success for contacts!')
+        Contacts=contactsModel(sequelize);
+        await sequelize.sync();
+        console.log("Tables for Contacts created!")
+
+    } catch(err) {
+        console.error('err!!',err)
+    }
+}
+
+module.exports = 
+    connectionContacts,
+    connectionProducts
+
