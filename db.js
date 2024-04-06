@@ -1,6 +1,6 @@
 const { Sequelize } = require('sequelize');
-const productsModel = require('./Products');
-const contactsModel = require('./Contacts')
+const productsModel = require('./models/Products');
+const contactsModel = require('./models/Contacts')
 const dotenv = require('dotenv').config()
 const pass = process.env.DB_PASS
 
